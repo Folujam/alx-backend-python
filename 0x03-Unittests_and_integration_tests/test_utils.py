@@ -21,7 +21,7 @@ class TestAccessNestedMap(unittest.TestCase):
                                path: Tuple,
                                needed_result: int):
         """uses assertEqual to ensure result"""
-        self.assertEquals(access_nested_map(nested_map, path), needed_result)
+        self.assertEqual(access_nested_map(nested_map, path), needed_result)
 
     @parameterized.expand([
         ({}, ("a",), 'a'),
@@ -35,5 +35,5 @@ class TestAccessNestedMap(unittest.TestCase):
          only above imputs"""
         with self.assertRaises(KeyError) as err:
             access_nested_map(nested_map, path)
-        self.assertEquals("KeyError {}".format(needed_result),
+        self.assertEqual("KeyError {}".format(needed_result),
                           repr(err.exception))
