@@ -23,9 +23,13 @@ class TestAccessNestedMap(unittest.TestCase):
         ({}, ("a",), 'a'),
         ({"a": 1}, ("a", "b"), 'b')
     ])
-    def test_access_nested_map_exception(self, nested_map, path, needed_result):
-        """uses assertRaises to raisee keyerror if 
+    def test_access_nested_map_exception(self,
+                                         nested_map,
+                                         path,
+                                         needed_result):
+        """uses assertRaises to raisee keyerror if
          only above imputs"""
         with self.assertRaises(KeyError) as err:
             access_nested_map(nested_map, path)
-        self.assertEquals("KeyError {}".format(needed_result), repr(err.exception))
+        self.assertEquals("KeyError {}".format(needed_result),
+                          repr(err.exception))
