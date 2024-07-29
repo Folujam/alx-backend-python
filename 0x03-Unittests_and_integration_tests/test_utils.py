@@ -4,7 +4,6 @@ from parameterized import parameterized
 import unittest
 from utils import access_nested_map, get_json, memoize
 from unittest.mock import patch
-from typing import Tuple, Dict
 
 
 class TestAccessNestedMap(unittest.TestCase):
@@ -18,9 +17,9 @@ class TestAccessNestedMap(unittest.TestCase):
         ({"a": {"b": 2}}, ("a", "b"), 2)
     ])
     def test_access_nested_map(self,
-                               nested_map: Dict,
-                               path: Tuple,
-                               needed_result: int):
+                               nested_map,
+                               path,
+                               needed_result):
         """uses assertEqual to ensure result"""
         self.assertEqual(access_nested_map(nested_map, path), needed_result)
 
@@ -29,15 +28,15 @@ class TestAccessNestedMap(unittest.TestCase):
         ({"a": 1}, ("a", "b"), 'b')
     ])
     def test_access_nested_map_exception(self,
-                                         nested_map: Dict,
-                                         path: Tuple,
-                                         needed_result: int):
+                                         nested_map,
+                                         path,
+                                         needed_result):
         """uses assertRaises to raisee keyerror if
          only above imputs"""
         with self.assertRaises(KeyError) as err:
             access_nested_map(nested_map, path)
         self.assertEqual("KeyError {}".format(needed_result),
-                          repr(err.exception))
+                         repr(err.exception))
 
 
 class TestGetJson(unittest.TestCase):
