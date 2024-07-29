@@ -12,9 +12,9 @@ class TestAccessNestedMap(unittest.TestCase):
     -decorates the method
     """
     @parameterized.expand([
-        ("nested_map", "path", 1),
-        ("nested_map", "path", {"b": 2}),
-        ("nested_map", "path", 2)
+        ({"a": 1}, ("a",), 1),
+        ({"a": {"b": 2}}, ("a",), {"b": 2}),
+        ({"a": {"b": 2}}, ("a", "b"), 2)
     ])
     def test_access_nested_map(self,
                                nested_map: Dict,
