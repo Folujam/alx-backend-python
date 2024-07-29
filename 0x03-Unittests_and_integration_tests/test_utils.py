@@ -3,6 +3,7 @@
 from parameterized import parameterized
 import unittest
 from utils import access_nested_map
+from typing import Tuple, Dict
 
 
 class TestAccessNestedMap(unittest.TestCase):
@@ -15,7 +16,10 @@ class TestAccessNestedMap(unittest.TestCase):
         ("nested_map", "path", {"b": 2}),
         ("nested_map", "path", 2)
     ])
-    def test_access_nested_map(self, nested_map, path, needed_result):
+    def test_access_nested_map(self,
+                               nested_map: Dict,
+                               path: Tuple,
+                               needed_result: int):
         """uses assertEqual to ensure result"""
         self.assertEquals(access_nested_map(nested_map, path), needed_result)
 
@@ -24,9 +28,9 @@ class TestAccessNestedMap(unittest.TestCase):
         ({"a": 1}, ("a", "b"), 'b')
     ])
     def test_access_nested_map_exception(self,
-                                         nested_map,
-                                         path,
-                                         needed_result):
+                                         nested_map: Dict,
+                                         path: Tuple,
+                                         needed_result: int):
         """uses assertRaises to raisee keyerror if
          only above imputs"""
         with self.assertRaises(KeyError) as err:
