@@ -19,9 +19,9 @@ class TestAccessNestedMap(unittest.TestCase):
     def test_access_nested_map(self,
                                nested_map,
                                path,
-                               needed_result):
+                               expected):
         """uses assertEqual to ensure result"""
-        self.assertEqual(access_nested_map(nested_map, path), needed_result)
+        self.assertEqual(access_nested_map(nested_map, path), expected)
 
     @parameterized.expand([
         ({}, ("a",), 'a'),
@@ -30,12 +30,12 @@ class TestAccessNestedMap(unittest.TestCase):
     def test_access_nested_map_exception(self,
                                          nested_map,
                                          path,
-                                         needed_result):
+                                         expected):
         """uses assertRaises to raisee keyerror if
          only above imputs"""
         with self.assertRaises(KeyError) as err:
             access_nested_map(nested_map, path)
-        self.assertEqual("KeyError {}".format(needed_result),
+        self.assertEqual("KeyError {}".format(expected),
                          repr(err.exception))
 
 
